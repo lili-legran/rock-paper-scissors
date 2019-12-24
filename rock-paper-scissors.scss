@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: 'Acme', sans-serif;
+}
+
+h1 {
+  font-size: 60px;
+  margin-bottom: 100px;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: yellow;
+  padding: 50px;
+  height: 100vh;
+  &__container {
+    display: flex;
+  }
+  &__computer,
+  &__gamer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__computer {
+
+  }
+  &__gamer {
+
+  }
+  &__computer_rock,
+  &__gamer_rock {
+    max-width: 50%;
+  }
+  &__computer_rock {
+
+  }
+  &__gamer_rock {
+    transform: scale(-1, 1);
+  }
+  &__name {
+    margin: 50px 0;
+    font-size: 30px;
+  }
+  &__control-panel {
+    display: flex;
+    margin: 70px 0;
+    width: 100%;
+  }
+  &__button {
+    width: 100px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    font-size: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.5s;
+    &:hover,
+    &:active {
+      transform: scale(1.1);
+    }
+  }
+  &__control-panel_empty {
+    width: 45%;
+  }
+  &__control-panel_button {
+    width: 10%;
+    text-align: center;
+  }
+  &__control-panel_buttons {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+  }
+ 
+}
