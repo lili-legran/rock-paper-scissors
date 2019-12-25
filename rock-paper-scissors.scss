@@ -20,6 +20,8 @@ h1 {
   height: 100vh;
   &__container {
     display: flex;
+    justify-content: space-between;
+    width: 60%;
   }
   &__computer,
   &__gamer {
@@ -35,13 +37,20 @@ h1 {
   }
   &__computer_rock,
   &__gamer_rock {
-    max-width: 50%;
+    width: 350px;
+    height: 300px;
   }
   &__computer_rock {
-
+    background-image: url('./acess/rock.png');
   }
   &__gamer_rock {
-    transform: scale(-1, 1);
+    background-image: url('./acess/rock-right.png');
+  }
+  &__computer_rock,
+  &__gamer_rock {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
   }
   &__name {
     margin: 50px 0;
@@ -68,6 +77,12 @@ h1 {
       transform: scale(1.1);
     }
   }
+  &__control-panel_play {
+    display: none;
+  }
+  &__button_enabled {
+    display: block;
+  }
   &__control-panel_empty {
     width: 45%;
   }
@@ -79,6 +94,5 @@ h1 {
     width: 45%;
     display: flex;
     justify-content: center;
-  }
- 
+  } 
 }
