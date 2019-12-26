@@ -37,8 +37,8 @@ h1 {
   }
   &__computer_rock,
   &__gamer_rock {
-    width: 350px;
-    height: 300px;
+    width: 400px;
+    height: 350px;
   }
   &__computer_rock {
     background-image: url('./acess/rock.png');
@@ -83,6 +83,9 @@ h1 {
   &__button_enabled {
     display: block;
   }
+  &__button_disable {
+    background: rgba(0, 0, 0, 0.5);
+  }
   &__control-panel_empty {
     width: 45%;
   }
@@ -95,4 +98,10 @@ h1 {
     display: flex;
     justify-content: center;
   } 
+  &__animated {
+    // transition-property: margin-top;
+    // transition-property: .5s;
+    transform: translate(-60%);
+    transition: transform 6s steps(6, start);
+  }
 }
