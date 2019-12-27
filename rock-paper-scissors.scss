@@ -29,17 +29,21 @@ h1 {
     flex-direction: column;
     align-items: center;
   }
-  &__computer {
-
-  }
+  &__computer,
   &__gamer {
-
+    position: relative;
+    width: 50%;
+    height: 500px;
   }
-  &__computer_rock,
+  &__computer_rock, 
   &__gamer_rock {
     width: 400px;
     height: 350px;
+    position: absolute;
   }
+  &__hands-animation {
+    animation: shakeHands 2s infinite ease-in-out;
+  } 
   &__computer_rock {
     background-image: url('./acess/rock.png');
   }
@@ -55,11 +59,18 @@ h1 {
   &__name {
     margin: 50px 0;
     font-size: 30px;
+    position: absolute;
+    bottom: 0;
   }
   &__control-panel {
     display: flex;
     margin: 70px 0;
     width: 100%;
+    &_choice {
+      &:hover {
+        box-shadow: 0 0 10px 5px #0c00ff;
+      }
+    }
   }
   &__button {
     width: 100px;
@@ -72,10 +83,9 @@ h1 {
     cursor: pointer;
     outline: none;
     transition: all 0.5s;
-    &:hover,
-    &:active {
-      transform: scale(1.1);
-    }
+  }
+  &__button-shadow {
+    box-shadow: 0 0 10px 5px #0c00ff;
   }
   &__control-panel_play {
     display: none;
@@ -103,5 +113,28 @@ h1 {
     // transition-property: .5s;
     transform: translate(-60%);
     transition: transform 6s steps(6, start);
+  }
+}
+@keyframes shakeHands {
+  from {
+    top: 0;
+  } 
+  15% {
+    top: 20px;
+  } 
+  30% {
+    top: 0;
+  }
+  45% {
+    top: 20px;
+  }
+  60% {
+    top: 0;
+  }
+  75% {
+    top: 20px;
+  }
+  to {
+    top: 0;
   }
 }

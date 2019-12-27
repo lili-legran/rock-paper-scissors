@@ -1,5 +1,6 @@
 let buttonPlay = document.querySelector('.game__control-panel_play');
-let buttons = document.querySelectorAll('.game__button');
+let allButtons = document.querySelectorAll('.game__button');
+let controlButtons = document.querySelectorAll('.game__control-panel_choice');
 const rockButton = document.querySelector('.game__control-panel_rock');
 const paperButton = document.querySelector('.game__control-panel_paper');
 const scissorsButton = document.querySelector('.game__control-panel_scissors');
@@ -9,8 +10,8 @@ let rock = './acess/rock.png';
 let scissors = './acess/scissors.png';
 let paper = './acess/paper.png';
 const items = [rock, scissors, paper];
-let choiceGamer;
-let choiseComputer;
+let gamerChoice;
+let computerChoice;
 
 const enableButtonPlay = () => {
   buttonPlay.classList.add('game__button_enabled');
@@ -21,46 +22,79 @@ const reverseImage = () => {
 }
 
 const showRockImage = () => {
-  gamerImage.style.backgroundImage = 'url(' + rock + ')';
-  reverseImage();
+  gamerChoice = rock;
+  removeButtonShadow();
+  rockButton.classList.add('game__button-shadow');
 }
 
 const showScissorsImage = () => {
-  gamerImage.style.backgroundImage = 'url(' + scissors + ')';
-  reverseImage();
+  gamerChoice = scissors;
+  removeButtonShadow();
+  scissorsButton.classList.add('game__button-shadow');
 }
 
 const showPaperImage = () => {
-  gamerImage.style.backgroundImage = 'url(' + paper + ')';
-  reverseImage();
+  gamerChoice = paper;
+  removeButtonShadow();
+  paperButton.classList.add('game__button-shadow');
 }
 
-const startPlay = () => {
-  dissabledButtons();
-  // shakerAnimation(); ??? добавить анимацию
-  showChoiceComputers();
-};
+const animationStart = () => {
+  gamerImage.classList.add('game__hands-animation');
+  computerImage.classList.add('game__hands-animation');
+}
+
+const animationEnd = () => {
+  gamerImage.classList.remove('game__hands-animation');
+  computerImage.classList.remove('game__hands-animation');
+}
 
 const dissabledButtons = () => {
-  buttons.forEach(el => {
+  allButtons.forEach(el => {
     el.classList.add('game__button_disable');
     el.disabled = true;
   });
 }
 
-const showChoiceComputers = () => {
-  choiseComputer = items[Math.floor(Math.random() * 3)];   
-  computerImage.style.backgroundImage = 'url(' + choiseComputer + ')';
+const showComputerChoice = () => {
+  computerChoice = items[Math.floor(Math.random() * 3)];   
+  computerImage.style.backgroundImage = 'url(' + computerChoice + ')';
 }
 
-buttons.forEach(element => {
-  return element.addEventListener('click', enableButtonPlay);
-});
+const showGamerChoice = () => {
+  gamerImage.style.backgroundImage = 'url(' + gamerChoice + ')';
+  reverseImage(); 
+}
 
-// rockButton.addEventListener('click', showRockImage);
-// scissorsButton.addEventListener('click', showScissorsImage);
-// paperButton.addEventListener('click', showPaperImage);
+const removeButtonShadow = () => {
+  controlButtons.forEach(elem => {
+    elem.classList.remove('game__button-shadow');
+  });
+}
+const enableButtons = () => {
+  allButtons.forEach(element => {
+    return element.addEventListener('click', enableButtonPlay);
+  });
+}
+
+const showResult = () => {
+  animationEnd();
+  showComputerChoice();
+  showGamerChoice();
+  removeButtonShadow();
+}
+
+const startPlay = () => {
+  dissabledButtons();
+  animationStart();
+  setTimeout(showResult, 2000);  
+};
+
+rockButton.addEventListener('click', showRockImage);
+scissorsButton.addEventListener('click', showScissorsImage);
+paperButton.addEventListener('click', showPaperImage);
 buttonPlay.addEventListener('click', startPlay);
+enableButtons();
 
 
 
