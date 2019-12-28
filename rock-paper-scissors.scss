@@ -45,10 +45,10 @@ h1 {
     animation: shakeHands 2s infinite ease-in-out;
   } 
   &__computer_rock {
-    background-image: url('./acess/rock.png');
+    background-image: url('./assets/rock.png');
   }
   &__gamer_rock {
-    background-image: url('./acess/rock-right.png');
+    background-image: url('./assets/rock-right.png');
   }
   &__computer_rock,
   &__gamer_rock {
@@ -109,10 +109,14 @@ h1 {
     justify-content: center;
   } 
   &__animated {
-    // transition-property: margin-top;
-    // transition-property: .5s;
     transform: translate(-60%);
     transition: transform 6s steps(6, start);
+  }
+  &__result {
+    position: absolute;
+    top: 35%;
+    font-size: 35px;
+    color: #0c00ff;
   }
 }
 @keyframes shakeHands {

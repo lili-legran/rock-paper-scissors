@@ -6,15 +6,18 @@ const paperButton = document.querySelector('.game__control-panel_paper');
 const scissorsButton = document.querySelector('.game__control-panel_scissors');
 let gamerImage = document.querySelector('.game__gamer_rock');
 let computerImage = document.querySelector('.game__computer_rock');
-let rock = './acess/rock.png';
-let scissors = './acess/scissors.png';
-let paper = './acess/paper.png';
+let rock = './assets/rock.png';
+let scissors = './assets/scissors.png';
+let paper = './assets/paper.png';
 const items = [rock, scissors, paper];
 let gamerChoice;
 let computerChoice;
+let resultText = document.querySelector('.game__result');
 
 const enableButtonPlay = () => {
   buttonPlay.classList.add('game__button_enabled');
+  buttonPlay.disabled = false;
+  buttonPlay.classList.remove('game__button_disable');
 };
 
 const reverseImage = () => {
@@ -56,6 +59,13 @@ const dissabledButtons = () => {
   });
 }
 
+const enabledButtons = () => {
+  controlButtons.forEach(el => {
+    el.classList.remove('game__button_disable');
+    el.disabled = false;
+  });
+}
+
 const showComputerChoice = () => {
   computerChoice = items[Math.floor(Math.random() * 3)];   
   computerImage.style.backgroundImage = 'url(' + computerChoice + ')';
@@ -71,10 +81,29 @@ const removeButtonShadow = () => {
     elem.classList.remove('game__button-shadow');
   });
 }
-const enableButtons = () => {
-  allButtons.forEach(element => {
+const enablePlayButton = () => {
+  controlButtons.forEach(element => {
     return element.addEventListener('click', enableButtonPlay);
   });
+}
+
+const getResult = () => {
+  if (gamerChoice == rock && computerChoice == scissors 
+    || gamerChoice == scissors && computerChoice == paper
+    || gamerChoice == paper && computerChoice == rock ) {
+    resultText.innerText = 'YOU WIN!';
+  } else if (gamerChoice == rock && computerChoice == paper
+    || gamerChoice == scissors && computerChoice == rock
+    || gamerChoice == paper && computerChoice == scissors) {
+      resultText.innerText = 'YOU LOSE!';
+  } else {
+    resultText.innerText = 'TIE!';
+  }
+  enabledButtons();
+}
+
+const updateResultText = () => {
+  resultText.innerText = '';
 }
 
 const showResult = () => {
@@ -82,9 +111,11 @@ const showResult = () => {
   showComputerChoice();
   showGamerChoice();
   removeButtonShadow();
+  getResult();
 }
 
-const startPlay = () => {
+const play = () => {
+  updateResultText();
   dissabledButtons();
   animationStart();
   setTimeout(showResult, 2000);  
@@ -93,8 +124,8 @@ const startPlay = () => {
 rockButton.addEventListener('click', showRockImage);
 scissorsButton.addEventListener('click', showScissorsImage);
 paperButton.addEventListener('click', showPaperImage);
-buttonPlay.addEventListener('click', startPlay);
-enableButtons();
+buttonPlay.addEventListener('click', play);
+enablePlayButton();
 
 
 
