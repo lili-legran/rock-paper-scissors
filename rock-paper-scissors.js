@@ -6,13 +6,17 @@ const paperButton = document.querySelector('.game__control-panel_paper');
 const scissorsButton = document.querySelector('.game__control-panel_scissors');
 let gamerImage = document.querySelector('.game__gamer_rock');
 let computerImage = document.querySelector('.game__computer_rock');
+let resultText = document.querySelector('.game__result');
 let rock = './assets/rock.png';
 let scissors = './assets/scissors.png';
 let paper = './assets/paper.png';
 const items = [rock, scissors, paper];
 let gamerChoice;
 let computerChoice;
-let resultText = document.querySelector('.game__result');
+let computerCounterContainer = document.querySelector('.game__gamer_counter');
+let gamerCounterContainer = document.querySelector('.game__computer_counter');
+let gamerCounter = 0;
+let computerCounter = 0;
 
 const enableButtonPlay = () => {
   buttonPlay.classList.add('game__button_enabled');
@@ -91,11 +95,15 @@ const getResult = () => {
   if (gamerChoice == rock && computerChoice == scissors 
     || gamerChoice == scissors && computerChoice == paper
     || gamerChoice == paper && computerChoice == rock ) {
-    resultText.innerText = 'YOU WIN!';
+      resultText.innerText = 'YOU WIN!';
+      gamerCounter++;
+      computerCounterContainer.innerText = gamerCounter;
   } else if (gamerChoice == rock && computerChoice == paper
     || gamerChoice == scissors && computerChoice == rock
     || gamerChoice == paper && computerChoice == scissors) {
       resultText.innerText = 'YOU LOSE!';
+      computerCounter++;
+      gamerCounterContainer.innerText = computerCounter;
   } else {
     resultText.innerText = 'TIE!';
   }

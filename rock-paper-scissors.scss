@@ -41,8 +41,15 @@ h1 {
     height: 350px;
     position: absolute;
   }
+  &__counter {
+    display: flex;
+    font-size: 50px;
+  }
+  &__divider {
+    margin: 0 10px;
+  }
   &__hands-animation {
-    animation: shakeHands 2s infinite ease-in-out;
+    animation: shakeHands 0.67s infinite ease-in-out;
   } 
   &__computer_rock {
     background-image: url('./assets/rock.png');
@@ -119,23 +126,12 @@ h1 {
     color: #0c00ff;
   }
 }
+
 @keyframes shakeHands {
   from {
     top: 0;
   } 
-  15% {
-    top: 20px;
-  } 
-  30% {
-    top: 0;
-  }
-  45% {
-    top: 20px;
-  }
-  60% {
-    top: 0;
-  }
-  75% {
+  50% {
     top: 20px;
   }
   to {
